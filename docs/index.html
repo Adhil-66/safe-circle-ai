@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Safe Circle AI</title>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0a1a4a"><link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#eef3fb;--card:#fff;--ink:#0d1b3d;--mut:#55627f;--line:#d6dfef;--navy:#0a1a4a;--cy:#22d3ee;--b:#2563eb;--g:#16a34a;--p:#7c3aed;--o:#ea7a0c;--t:#0ea5b7;--pu:#8b5cf6;--r:#dc2626;--soft:#e4ecfa;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070f26;--card:#101c3f;--ink:#e8eefc;--mut:#9aa9cc;--line:#25336280;--soft:#18264f}}
+:root[data-theme="dark"]{--bg:#070f26;--card:#101c3f;--ink:#e8eefc;--mut:#9aa9cc;--line:#253362;--soft:#18264f}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 'Source Sans 3',system-ui,sans-serif}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;margin:0;line-height:1.2}
+header{background:linear-gradient(120deg,#07123a,#0f2a6b);color:#fff;padding:16px 20px}
+.top{max-width:1100px;margin:auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.top svg{width:44px;height:44px;flex:none}
+.top h1{font-size:1.5rem}.top h1 span{color:var(--cy)}
+.top p{margin:0;opacity:.8;font-size:.9rem}
+.top .tg{margin-left:auto;font-style:italic;opacity:.85}
+nav{max-width:1100px;margin:14px auto 0;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+nav a{color:#cfe0ff;text-decoration:none;padding:7px 13px;border-radius:99px;white-space:nowrap;font-size:.92rem;border:1px solid #ffffff30}
+nav a.on{background:var(--cy);color:#06214a;border-color:var(--cy);font-weight:600}
+nav a:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--cy);outline-offset:2px}
+main{max-width:1100px;margin:auto;padding:20px}
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.mods{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.mod{color:#fff;border-radius:14px;padding:16px;text-decoration:none;display:block;min-height:130px}
+.mod b{font-family:Sora,sans-serif;display:block;font-size:1rem;margin-bottom:4px}.mod span{font-size:.88rem;opacity:.92}
+.m1{background:linear-gradient(160deg,#2563eb,#1e40af)}.m2{background:linear-gradient(160deg,#16a34a,#0f6b32)}.m3{background:linear-gradient(160deg,#7c3aed,#5b21b6)}.m4{background:linear-gradient(160deg,#ea7a0c,#b45309)}.m5{background:linear-gradient(160deg,#0ea5b7,#0b6f7d)}.m6{background:linear-gradient(160deg,#8b5cf6,#6d28d9)}
+.engine{background:linear-gradient(120deg,#1b0f4d,#3b1a8a);color:#fff;border-radius:16px;padding:22px;margin:16px 0}
+.meter{height:14px;border-radius:99px;background:#ffffff25;overflow:hidden;margin:10px 0}.meter i{display:block;height:100%;background:var(--cy);width:0;transition:width .6s}
+.btn{border:0;border-radius:10px;padding:10px 16px;font:600 .95rem 'Source Sans 3',sans-serif;cursor:pointer;background:var(--b);color:#fff}
+.btn.alt{background:var(--soft);color:var(--ink)}.btn.red{background:var(--r)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+textarea,input[type=text]{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px;font:inherit}
+.pill{display:inline-block;border-radius:99px;padding:2px 10px;font-size:.8rem;font-weight:600;color:#fff}
+.s1{background:var(--g)}.s2{background:var(--o)}.s3{background:var(--r)}
+.tl{list-style:none;margin:0;padding:0}.tl li{padding:9px 0 9px 16px;border-left:3px solid var(--line);position:relative}
+.tl li small{color:var(--mut);display:block}
+.mut{color:var(--mut)}.note{font-size:.85rem;color:var(--mut);border-left:3px solid var(--cy);padding-left:10px;margin:12px 0}
+.dev{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+label.chk{display:flex;gap:10px;padding:8px 0;align-items:flex-start}label.chk input{margin-top:5px}
+details{border-bottom:1px solid var(--line);padding:10px 0}summary{cursor:pointer;font-weight:600}
+.wf{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.wf span{background:var(--soft);border-radius:99px;padding:5px 12px;font-size:.88rem}
+.goal{text-align:center;padding:18px;font-family:Sora,sans-serif;font-weight:600;margin-top:20px}
+h2{margin-bottom:6px}h3{font-size:1.05rem;margin-bottom:8px}
+.hl{background:#ea7a0c40;border-radius:4px;padding:0 2px}
+</style>
+</head>
+<body>
+<header>
+ <div class="top">
+  <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 6 10v13c0 10 7 18 18 22 11-4 18-12 18-22V10z" fill="#1d4ed8" stroke="#22d3ee" stroke-width="2"/><circle cx="24" cy="19" r="5" fill="#fff"/><path d="M14 33c1-6 5-8 10-8s9 2 10 8" fill="#fff"/></svg>
+  <div><h1>Safe Circle <span>AI</span></h1><p>Your safety. Your privacy. Your freedom.</p></div>
+  <div class="tg">Detect · Prevent · Protect</div>
+ </div>
+ <nav id="nav" aria-label="Sections"></nav>
+</header>
+<main id="main"></main>
+
+<script>
+var MODS=[
+{id:'trackshield',n:'TrackShield',d:'Physical tracking detection',c:'m1'},
+{id:'shadowwatch',n:'ShadowWatch',d:'Digital surveillance protection',c:'m2'},
+{id:'privacyguardian',n:'Privacy Guardian',d:'Privacy risk detection',c:'m3'},
+{id:'patternlock',n:'PatternLock',d:'Stalking pattern intelligence',c:'m4'},
+{id:'saferesponse',n:'Safe Response',d:'Emergency support',c:'m5'},
+{id:'awareness',n:'Behaviour Awareness AI',d:'Education & awareness',c:'m6'}];
+var S={events:[],contacts:[],learned:0};
+try{var raw=localStorage.getItem('sc_state');if(raw)S=Object.assign(S,JSON.parse(raw))}catch(e){}
+function save(){try{localStorage.setItem('sc_state',JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function log(mod,sev,msg){S.events.unshift({t:Date.now(),mod:mod,sev:sev,msg:msg});S.events=S.events.slice(0,60);save()}
+function fmt(t){return new Date(t).toLocaleString([], {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
+var $=function(id){return document.getElementById(id)};
+
+/* PatternLock engine: correlates events across modules */
+function analyse(){
+ var wk=Date.now()-7*864e5,ev=S.events.filter(function(e){return e.t>wk&&e.mod!=='patternlock'});
+ var score=Math.min(100,ev.reduce(function(a,e){return a+e.sev*e.sev*3},0));
+ var mods={};ev.forEach(function(e){if(e.sev>=2)mods[e.mod]=(mods[e.mod]||0)+1});
+ var k=Object.keys(mods),alerts=[];
+ if(k.length>=2)alerts.push({sev:3,msg:'Concerns in '+k.length+' areas ('+k.map(nm).join(', ')+') within 7 days. This may be a coordinated pattern, so save your evidence and tell a trusted contact.'});
+ else if(k.length===1)alerts.push({sev:2,msg:'Repeated concern in '+nm(k[0])+'. Keep logging incidents so patterns can be spotted.'});
+ if(mods.trackshield&&!S.contacts.length)alerts.push({sev:2,msg:'A tracking concern is logged but you have no trusted contacts yet. Add one in Safe Response.'});
+ if(!ev.length)alerts.push({sev:1,msg:'No concerns logged in the last 7 days.'});
+ return{score:score,alerts:alerts,ev:ev,mods:k};
+}
+function nm(id){var m=MODS.filter(function(x){return x.id===id})[0];return m?m.n:id}
+function tips(a){
+ var t=[];
+ if(a.mods.indexOf('trackshield')>-1)t.push('Check bags, car and coat linings for small unknown tags.');
+ if(a.mods.indexOf('shadowwatch')>-1)t.push('Change passwords from a device you trust, then turn on two-step sign-in.');
+ if(a.mods.indexOf('privacyguardian')>-1)t.push('Remove live location and contact details from public posts.');
+ t.push('Take screenshots with dates. A clear timeline helps police and support services.');
+ if(S.learned<3)t.push('Finish the awareness lessons to get tips matched to your situation.');
+ return t;
+}
+
+/* Views */
+var V={};
+V.dashboard=function(){
+ var a=analyse(),lv=a.score>=60?['High',3]:a.score>=25?['Medium',2]:['Low',1];
+ return '<h2>Dashboard</h2><p class="mut">Choose the feature you need. Everything you log feeds PatternLock, the engine that looks for patterns.</p>'
+ +'<div class="mods">'+MODS.map(function(m,i){return '<a class="mod '+m.c+'" href="#'+m.id+'"><b>'+m.n+'</b><span>'+m.d+'</span></a>'}).join('')+'</div>'
+ +'<div class="engine"><h3>PatternLock central engine</h3><div>Risk level this week: <span class="pill s'+lv[1]+'">'+lv[0]+'</span> <span style="opacity:.8">('+a.score+'/100)</span></div><div class="meter"><i id="mt"></i></div>'
+ +a.alerts.map(function(x){return '<p style="margin:6px 0"><span class="pill s'+x.sev+'">Risk alert</span> '+esc(x.msg)+'</p>'}).join('')+'</div>'
+ +'<div class="grid g3"><div class="card"><h3>Evidence timeline</h3>'+timeline(8)+'</div>'
+ +'<div class="card"><h3>Personalised safety tips</h3><ul>'+tips(a).map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul>'
+ +'<h3 style="margin-top:14px">Trusted contacts</h3><p class="mut" style="margin:0">'+(S.contacts.length?S.contacts.map(esc).join(', '):'None yet. Add some in Safe Response.')+'</p></div></div>'
+ +'<div class="card" style="margin-top:16px"><h3>How it works</h3><div class="wf"><span>1 Sign up and set preferences</span><span>2 View dashboard</span><span>3 Scan, analyse or learn</span><span>4 Get insights</span><span>5 Contact, secure or learn</span><span>6 Stay safer</span></div></div>'
+ +'<div class="goal">Our goal: a safer, more aware and respectful community for everyone.</div>';
+};
+function timeline(n){
+ if(!S.events.length)return '<p class="mut">Nothing logged yet. Use any module and your findings appear here.</p>';
+ return '<ul class="tl">'+S.events.slice(0,n).map(function(e){return '<li><span class="pill s'+e.sev+'">'+['','Info','Concern','Urgent'][e.sev]+'</span> '+esc(e.msg)+'<small>'+nm(e.mod)+' · '+fmt(e.t)+'</small></li>'}).join('')+'</ul>';
+}
+function head(id,t){return '<h2>'+t+'</h2>'}
+var DEV=[{n:'Unknown tag (tracker-type)',seen:5,km:3.2,r:3},{n:'Wireless earbuds',seen:2,km:0.1,r:1},{n:'Unnamed device 4F:2A',seen:3,km:1.4,r:2},{n:'Smart watch (yours)',seen:9,km:0,r:1}];
+V.trackshield=function(){
+ return head('','TrackShield')+'<p class="mut">Physical tracking detection. Look for Bluetooth devices that keep appearing wherever you go.</p>'
+ +'<div class="note">This demo uses sample data. Web browsers cannot read nearby Bluetooth trackers. A native app would feed real scans into this same view.</div>'
+ +'<div class="card"><div class="row"><button class="btn" id="scan">Scan nearby devices</button><span id="sst" class="mut"></span></div><div id="devs"></div></div>';
+};
+V.shadowwatch=function(){
+ var q=['I get sign-in alerts for logins I didn’t make','Someone knows things I only shared privately','My phone battery drains fast or runs hot','An unfamiliar app or profile is installed','Someone else knows my passcode or has my passwords','My location or messages appear to be shared with someone'];
+ return head('','ShadowWatch')+'<p class="mut">Tick anything that is happening to you. We’ll score the risk of digital surveillance.</p>'
+ +'<div class="card">'+q.map(function(x,i){return '<label class="chk"><input type="checkbox" class="sw"> <span>'+x+'</span></label>'}).join('')
+ +'<div class="row" style="margin-top:10px"><button class="btn" id="swgo">Check my risk</button></div><div id="swout"></div></div>';
+};
+var PII=[[/(\+?\d[\d\s\-]{8,}\d)/g,'Phone number',2],[/[\w.+-]+@[\w-]+\.[\w.]+/g,'Email address',2],[/\b\d{1,4}[\w\/-]*,?\s+[\w ]{2,25}\b(street|st\.|road|rd\.|nagar|lane|avenue|ave|colony)\b/gi,'Street address',3],[/\b(i['’]?m|i am|we['’]?re)\s+(at|in|near|outside)\s+[^.!\n]{3,40}/gi,'Live location',3],[/\b(my|our)\s+(school|college|office|gym|hostel)\b[^.!\n]{0,30}/gi,'Routine place',2],[/\b(every|each)\s+(day|morning|evening|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b[^.!\n]{0,30}/gi,'Routine pattern',2],[/\b[A-Z]{2}\s?\d{1,2}\s?[A-Z]{1,3}\s?\d{3,4}\b/g,'Vehicle number',3]];
+V.privacyguardian=function(){
+ return head('','Privacy Guardian')+'<p class="mut">Paste a message, caption or post. We’ll flag details that could reveal where you are or how to reach you. Text stays on your device.</p>'
+ +'<div class="card"><textarea id="pg" rows="6" aria-label="Text to scan" placeholder="e.g. Heading to my gym every evening, I’m at Palayam road now. Call me on 98470 12345"></textarea>'
+ +'<div class="row" style="margin-top:10px"><button class="btn" id="pgo">Scan for privacy risks</button></div><div id="pgout"></div></div>';
+};
+V.patternlock=function(){
+ var a=analyse(),c={};a.ev.forEach(function(e){c[e.mod]=(c[e.mod]||0)+1});
+ return head('','PatternLock')+'<p class="mut">Central AI engine. It correlates everything you log across modules and looks for escalating or repeating signs of stalking.</p>'
+ +'<div class="card"><h3>Log an incident</h3><div class="row"><input type="text" id="inc" aria-label="Incident description" placeholder="What happened? e.g. Same person outside my building again" style="flex:1;min-width:200px">'
+ +'<select id="isev" class="btn alt" aria-label="Severity"><option value="1">Minor</option><option value="2" selected>Concerning</option><option value="3">Urgent</option></select><button class="btn" id="iadd">Add to timeline</button></div></div>'
+ +'<div class="grid g3" style="margin-top:16px"><div class="card"><h3>Pattern insights</h3>'+a.alerts.map(function(x){return '<p><span class="pill s'+x.sev+'">'+['','Info','Watch','Alert'][x.sev]+'</span> '+esc(x.msg)+'</p>'}).join('')
+ +'<h3>Activity by module (7 days)</h3>'+(Object.keys(c).length?Object.keys(c).map(function(k){return '<div>'+nm(k)+': <b>'+c[k]+'</b></div>'}).join(''):'<p class="mut">No data yet.</p>')+'</div>'
+ +'<div class="card"><h3>Evidence timeline</h3>'+timeline(20)+'<div class="row" style="margin-top:10px"><button class="btn alt" id="exp">Copy timeline</button><button class="btn alt" id="clr">Clear all</button></div><span id="expst" class="mut"></span></div></div>';
+};
+V.saferesponse=function(){
+ return head('','Safe Response')+'<p class="mut">Emergency support. Alert the people you trust in one tap.</p>'
+ +'<div class="grid g3"><div class="card"><h3>Trusted contacts</h3><div class="row"><input type="text" id="cn" aria-label="Contact name" placeholder="Name" style="flex:1"><button class="btn" id="cadd">Add</button></div>'
+ +'<div id="cl">'+clist()+'</div></div>'
+ +'<div class="card"><h3>Send an alert</h3><textarea id="sm" rows="4" aria-label="Alert message">I need help and I don’t feel safe. Please call me or come to me now.</textarea>'
+ +'<div class="row" style="margin-top:10px"><button class="btn red" id="sos">Notify trusted contacts</button></div><div id="sout"></div></div></div>'
+ +'<div class="card" style="margin-top:16px"><h3>If you are in danger</h3><p style="margin:0">Call your local emergency number first: <b>112</b> (India), 911 (US), 999 (UK). Women’s helpline in India: <b>181</b>.</p></div>';
+};
+function clist(){return S.contacts.length?S.contacts.map(function(c,i){return '<div class="dev"><span>'+esc(c)+'</span><button class="btn alt" data-rm="'+i+'">Remove</button></div>'}).join(''):'<p class="mut">No contacts yet.</p>'}
+var LES=[['Recognise controlling patterns','Stalking is a pattern, not a single event: repeated contact, showing up where you are, monitoring accounts, or tracking your movements. Each act may look small. Together they matter.'],['Respectful boundaries online','Consent applies to location sharing, photos and messages. A “no” or silence means stop. Sharing someone’s details without asking can put them at risk.'],['Secure your accounts','Use unique passwords, turn on two-step sign-in, review logged-in devices and remove apps you don’t recognise.'],['Supporting a friend','Listen, don’t blame, help them keep dated evidence, and let them decide the next step. Offer to go with them to report.']];
+var QZ=[['A tag you don’t own keeps showing up in different places you visit. What is the best first step?',['Ignore it','Log it and tell someone you trust',' Throw your phone away'],1],['Which post reveals the most risk?',['A photo of a sunset','“At Palayam gym every evening at 6”','A recipe'],1],['Someone says no to sharing their location. You should…',['Ask again later','Respect it','Track them anyway'],1]];
+V.awareness=function(){
+ return head('','Behaviour Awareness AI')+'<p class="mut">Short lessons on safe, respectful behaviour. Progress: <b id="lp">'+S.learned+'</b> of '+LES.length+' read.</p>'
+ +'<div class="card">'+LES.map(function(l,i){return '<details data-l="'+i+'"><summary>'+l[0]+'</summary><p>'+l[1]+'</p></details>'}).join('')+'</div>'
+ +'<div class="card" style="margin-top:16px"><h3>Quick quiz</h3>'+QZ.map(function(q,i){return '<p><b>'+q[0]+'</b></p>'+q[1].map(function(o,j){return '<label class="chk"><input type="radio" name="q'+i+'" value="'+j+'"> <span>'+esc(o.trim())+'</span></label>'}).join('')}).join('')
+ +'<div class="row" style="margin-top:10px"><button class="btn" id="qgo">Check answers</button><span id="qout"></span></div></div>';
+};
+
+/* Wiring */
+var seen={};
+var W={
+trackshield:function(){
+ $('scan').onclick=function(){
+  $('sst').textContent='Scanning…';$('devs').innerHTML='';
+  setTimeout(function(){
+   $('sst').textContent='Scan complete. '+DEV.length+' devices.';
+   $('devs').innerHTML=DEV.map(function(d,i){var lab=['','Normal','Check','Likely following you'][d.r];return '<div class="dev"><div><b>'+d.n+'</b><div class="mut">Seen at '+d.seen+' places over '+d.km+' km</div></div><div class="row"><span class="pill s'+d.r+'">'+lab+'</span>'+(d.r>1?'<button class="btn alt" data-d="'+i+'">Log concern</button>':'')+'</div></div>'}).join('');
+   [].forEach.call(document.querySelectorAll('[data-d]'),function(b){b.onclick=function(){var d=DEV[b.dataset.d];log('trackshield',d.r,d.n+' seen at '+d.seen+' places across '+d.km+' km');b.textContent='Logged';b.disabled=true}});
+  },900)};
+},
+shadowwatch:function(){
+ $('swgo').onclick=function(){var n=[].filter.call(document.querySelectorAll('.sw'),function(c){return c.checked}).length,s=n>=4?3:n>=2?2:1;
+  var adv=['No strong signs. Keep two-step sign-in on.','Some signs. Review installed apps and logged-in devices, and change your passwords.','Strong signs of monitoring. Use a device you trust to change passwords, and contact support before removing anything, so evidence is kept.'][s-1];
+  $('swout').innerHTML='<p><span class="pill s'+s+'">'+['','Low','Medium','High'][s]+' risk</span> '+n+' of 6 signs ticked. '+adv+'</p>';
+  if(n)log('shadowwatch',s,n+' surveillance signs reported in digital check')};
+},
+privacyguardian:function(){
+ $('pgo').onclick=function(){var t=$('pg').value,f=[],h=esc(t);
+  if(!t.trim()){$('pgout').innerHTML='<p class="mut">Paste some text first.</p>';return}
+  PII.forEach(function(p){var m=t.match(p[0]);if(m)m.forEach(function(x){f.push([p[1],x.trim(),p[2]]);h=h.split(esc(x)).join('<span class="hl">'+esc(x)+'</span>')})});
+  var mx=f.reduce(function(a,x){return Math.max(a,x[2])},1);
+  $('pgout').innerHTML='<p style="margin-top:12px">'+h.replace(/\n/g,'<br>')+'</p>'+(f.length?'<p><span class="pill s'+mx+'">'+['','Low','Medium','High'][mx]+' risk</span> '+f.length+' detail(s) found.</p><ul>'+f.map(function(x){return '<li><b>'+x[0]+':</b> '+esc(x[1])+'</li>'}).join('')+'</ul><button class="btn alt" id="pgl">Log to timeline</button>':'<p><span class="pill s1">Low risk</span> Nothing sensitive found.</p>');
+  if($('pgl'))$('pgl').onclick=function(){log('privacyguardian',mx,f.length+' risky detail(s) found: '+f.map(function(x){return x[0]}).filter(function(v,i,a){return a.indexOf(v)===i}).join(', '));this.textContent='Logged';this.disabled=true}};
+},
+patternlock:function(){
+ $('iadd').onclick=function(){var v=$('inc').value.trim();if(!v)return;log('patternlock',+$('isev').value,v);go()};
+ $('clr').onclick=function(){if(confirm('Clear the whole timeline?')){S.events=[];save();go()}};
+ $('exp').onclick=function(){var tx=S.events.map(function(e){return fmt(e.t)+' | '+nm(e.mod)+' | '+e.msg}).join('\n');
+  (navigator.clipboard?navigator.clipboard.writeText(tx):Promise.reject()).then(function(){$('expst').textContent='Copied.'},function(){$('expst').textContent='Copy not available here.'})};
+},
+saferesponse:function(){
+ function addc(){var v=$('cn').value.trim();if(v){S.contacts.push(v);save();go()}}
+ $('cadd').onclick=addc;
+ [].forEach.call(document.querySelectorAll('[data-rm]'),function(b){b.onclick=function(){S.contacts.splice(+b.dataset.rm,1);save();go()}});
+ $('sos').onclick=function(){
+  if(!S.contacts.length){$('sout').innerHTML='<p class="mut">Add at least one trusted contact first.</p>';return}
+  var m=$('sm').value;log('saferesponse',3,'Alert prepared for '+S.contacts.join(', '));
+  $('sout').innerHTML='<p><span class="pill s3">Ready</span> This demo can’t send messages. Copy the text below and send it now.</p><textarea rows="3" readonly>'+esc(m+' (Sent '+fmt(Date.now())+')')+'</textarea>'};
+},
+awareness:function(){
+ [].forEach.call(document.querySelectorAll('details'),function(d){d.addEventListener('toggle',function(){if(d.open&&!seen[d.dataset.l]){seen[d.dataset.l]=1;S.learned=Math.max(S.learned,Object.keys(seen).length);save();$('lp').textContent=S.learned}})});
+ $('qgo').onclick=function(){var s=0;QZ.forEach(function(q,i){var c=document.querySelector('input[name=q'+i+']:checked');if(c&&+c.value===q[2])s++});$('qout').textContent='Score: '+s+' of '+QZ.length+(s===QZ.length?'. Well done.':'. Review the lessons and try again.')};
+}};
+
+
+var TS=['A small unknown tag or disc in my bag, pockets or coat lining','Something attached under my car (bumper, wheel arch, OBD port)','An unfamiliar tracker alert appeared on my phone','A gift or item I was given recently has a battery or feels oddly heavy','Someone knows where I’ve been without me telling them','I found a device I can’t identify'];
+V.trackshield=function(){
+ return '<h2>TrackShield</h2><p class="mut">Physical tracking check. Tick what applies.</p>'
+ +'<div class="card">'+TS.map(function(x){return '<label class="chk"><input type="checkbox" class="tsc"> <span>'+x+'</span></label>'}).join('')+'<div class="row" style="margin-top:10px"><button class="btn" id="tsgo">Check and log</button></div><div id="tsout"></div></div>'
+ +'<div class="card"><h3>Use your phone’s own tracker alerts</h3><p>iPhone: keep Bluetooth, Location Services and tracking notifications on (Find My settings). Android: look for “Unknown tracker alerts” under Safety &amp; emergency settings (the name varies by phone).</p><p class="mut">Automatic Bluetooth scanning for trackers is in the Safe Circle desktop app. Browsers can’t do it.</p></div>';
+};
+W.trackshield=function(){$('tsgo').onclick=function(){var n=document.querySelectorAll('.tsc:checked').length,s=n>=3?3:n>=1?2:1;
+ $('tsout').innerHTML='<p><span class="pill s'+s+'">'+['','Low','Medium','High'][s]+' risk</span> '+['No signs ticked.','Sweep bags, clothing and your car. If you find a device, photograph it before touching it.','Strong signs. Go somewhere safe and public, photograph anything you find, and contact the police or someone you trust.'][s-1]+'</p>';
+ if(n)log('trackshield',s,n+' physical tracking signs reported')}};
+V.saferesponse=function(){
+ return '<h2>Safe Response</h2><p class="mut">Contacts are saved on this phone only. Alerts open your own messaging app.</p>'
+ +'<div class="grid g3"><div class="card"><h3>Trusted contacts</h3><div class="row"><input type="text" id="cn" aria-label="Name" placeholder="Name" style="flex:1"><input type="text" id="cp" aria-label="Phone number" placeholder="Phone, e.g. +91..." style="flex:1" inputmode="tel"><button class="btn" id="cadd">Add</button></div><div id="cl">'+clist()+'</div></div>'
+ +'<div class="card"><h3>Send an alert</h3><textarea id="sm" rows="4" aria-label="Alert message">I need help and I don’t feel safe. Please call me or come to me now.</textarea><div class="row" style="margin-top:10px"><button class="btn red" id="sos">Prepare alert</button></div><div id="sout"></div></div></div>'
+ +'<div class="card" style="margin-top:16px"><h3>If you are in danger</h3><p style="margin:0 0 10px">Call emergency services first.</p><a class="btn red" href="tel:112">Call 112</a> <a class="btn alt" href="tel:181">Women’s helpline 181</a></div>';
+};
+W.saferesponse=function(){
+ $('cadd').onclick=function(){var n=$('cn').value.trim(),p=$('cp').value.trim();if(n&&p){S.contacts.push(n+' ('+p+')');save();go()}};
+ [].forEach.call(document.querySelectorAll('[data-rm]'),function(b){b.onclick=function(){S.contacts.splice(+b.dataset.rm,1);save();go()}});
+ $('sos').onclick=function(){
+  if(!S.contacts.length){$('sout').innerHTML='<p class="mut">Add at least one contact first.</p>';return}
+  var m=encodeURIComponent($('sm').value+' (Sent '+fmt(Date.now())+')');log('saferesponse',3,'Alert prepared for '+S.contacts.length+' contact(s)');
+  $('sout').innerHTML=S.contacts.map(function(c){var p=((c.match(/\(([^)]+)\)$/)||[])[1]||'').replace(/[^\d+]/g,'');return '<p><a class="btn" href="sms:'+p+'?&body='+m+'">Message '+esc(c.replace(/ \(.*$/,''))+'</a> <a class="btn alt" href="tel:'+p+'">Call</a></p>'}).join('')};
+};
+function go(){
+ var id=(location.hash||'#dashboard').slice(1);if(!V[id])id='dashboard';
+ $('nav').innerHTML=[['dashboard','Dashboard']].concat(MODS.map(function(m){return [m.id,m.n.replace(' AI','')]})).map(function(x){return '<a href="#'+x[0]+'"'+(x[0]===id?' class="on" aria-current="page"':'')+'>'+x[1]+'</a>'}).join('');
+ $('main').innerHTML=V[id]();
+ if(W[id])W[id]();
+ if($('mt'))setTimeout(function(){$('mt').style.width=analyse().score+'%'},50);
+}
+window.addEventListener('hashchange',function(){go();window.scrollTo(0,0)});
+go();
+</script>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){})</script>
+</body>
+</html>
